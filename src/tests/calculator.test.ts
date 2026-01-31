@@ -14,4 +14,8 @@ describe('Calculator (Q1)', () => {
   it('should subtract numbers correctly', () => {
     expect(calculator.subtract(5, 2)).toBe(3);
   });
+
+  it('should multiply numbers correctly', () => {
+    expect(calculator.multiply(2, 3)).toBe(6);
+  });
 });
