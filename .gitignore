@@ -1,0 +1,6 @@
+node_modules
+dist
+.env
+coverage
+video_script.md
+tests_manual/

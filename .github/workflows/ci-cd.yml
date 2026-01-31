@@ -1,0 +1,43 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Lint Quality Check (Q4)
+      run: npm run lint
+
+    - name: Build
+      run: npm run build
+
+    - name: Run Tests (Q1 & Q2)
+      run: npm test -- -c jest.config.cjs
+
+  deploy-staging:
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy to Staging (Simulated)
+      run: |
+        echo "Deploying to production environment..."
+        echo "Lead Time for Changes: $(date)"
+        echo "Deployment Successful!"
