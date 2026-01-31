@@ -3,4 +3,5 @@ dist
 .env
 coverage
 video_script.md
+video_script_en.md
 tests_manual/
